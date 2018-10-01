@@ -15,9 +15,8 @@
         crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
         crossorigin="anonymous"></script>
-        
     <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-    <script src="friends.js"></script>
+    <script src="../data/friends.js"></script>
     <script src="../routing/apiRoutes.js"></script>
 </head>
 
@@ -153,8 +152,8 @@
             event.preventDefault();
             let score = []
 
-                for (let i = 0; i < 10; i++) {
-                    score.push($(`quest${i}`).val());
+                for (let i = 1; i < 11; i++) {
+                    score.push(parseInt($(`#quest${i}`).val()));
                 }
 
                 if (score.length === 10 && $("#name").val().trim() && $("#photo-image").val().trim()) {
@@ -163,12 +162,15 @@
                         name: $("#name").val().trim(),
                         photoimage: $("#photo-image").val().trim(),
                     };
-console.log(newFriend)
-                        $.post("/api/friends", newFriend)
-                            .then(function (data) {
-                                console.log("survey.html", data);
-                            });
+
+                // console.log(newFriend)
+            
+                $.post("/api/friends", newFriend, function (data) {
+                        console.log(data)
+                        console.log("survey.html", data);
+                    });
                 }
+                
         });
 
     </script>
