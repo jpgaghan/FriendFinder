@@ -3,9 +3,6 @@ const bodyParser = require("body-parser");
 const path = require("path");
 const app = express();
 
-// const friends = require('./app/data/friends.js');
-
-// console.log(friends)
 const PORT = process.env.PORT || 3000;
 
 // Sets up the Express app to handle data parsing
