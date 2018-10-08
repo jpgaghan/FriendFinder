@@ -6,8 +6,8 @@
 
 ## Survey Page
 Put your name and picture link in the survey page. Then answer the questions and click submit button at the bottom of the page.
-![Survey1](/images/survey1.PNG)
-![Survey2](/images/survey2.PNG)
+![Survey1](/images/Survey1.PNG)
+![Survey2](/images/Survey2.PNG)
 
 ### Required Packages
 * npm packages:
