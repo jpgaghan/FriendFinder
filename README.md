@@ -1,4 +1,4 @@
- #Friend Finder
+# Friend Finder
  This is an application that uses Heroku and node.js to find you your best fit for a friend
 
 ## Click button to go to survey
