@@ -13,23 +13,30 @@ var currentmatchIndex = 0;
 module.exports = 
   function (app) {
     app.get("/api/friends", function(req, res) {
+      console.log('get call');
+      
       return res.json(friends);
     });
     
     app.post("/api/friends", function(req, res) {
+      console.log('made the call');
+      
       newFriend = req.body;
       friends.push(newFriend);
+
+      console.log(newFriend);
+      console.log(findFriend(friends, newFriend));
+      
+      
       res.json(findFriend(friends, newFriend));
     });
   }
 
 findFriend = (friends, newFriend) => {
-  // console.log(friends);
 
   newFriend.scores.forEach(function(index) {
     newfriendScore = parseInt(newfriendScore) + parseInt(index);
   });
-  console.log(newfriendScore)
 
   friends.forEach(function(key) {
     key.scores.forEach(function(iteration) {
@@ -38,17 +45,17 @@ findFriend = (friends, newFriend) => {
     currentArray.push(currentfriendScore);
     currentfriendScore=0;
   })
-
+ 
   for(var i=0; i<currentArray.length-1;i++) {
     currentScore = Math.abs(currentArray[i]-newfriendScore)
-    if (currentmatchBenchmark>currentScore) {
+    if (currentmatchBenchmark>=currentScore) {
       currentmatchBenchmark = currentScore
       currentmatchIndex=i
     }
-    console.log(currentmatchBenchmark)
   }
   currentmatchBenchmark=100;
   newfriendScore = 0;
-  console.log(friends[currentmatchIndex]);
+  currentArray = []
+  console.log(friends[currentmatchIndex])
   return friends[currentmatchIndex];
 }

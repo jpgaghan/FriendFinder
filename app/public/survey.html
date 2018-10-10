@@ -167,32 +167,10 @@
         </p>
     </div>
     <script>
+            var modal = document.getElementById('myModal');
+            var span = document.getElementsByClassName("close")[0];
 
-        $("#submit").on("click", function (event) {
-            event.preventDefault();
-            let score = []
-
-            for (let i = 1; i < 11; i++) {
-                score.push(parseInt($(`#quest${i}`).val()));
-            }
-
-            if (score.length === 10 && $("#name").val().trim() && $("#photo-image").val().trim()) {
-                const newFriend = {
-                    scores: score,
-                    name: $("#name").val().trim(),
-                    photoimage: $("#photo-image").val().trim(),
-                };
-
-                $.post("/api/friends", newFriend, function (data) {
-                    console.log(data)
-                    var modal = document.getElementById('myModal');
-
-                    var span = document.getElementsByClassName("close")[0];
-
-                    modal.style.display = "block";
-                    $("#bestie").text(data.name);
-                    $("#image").attr("src", data.photo)
-                    span.onclick = function () {
+             span.onclick = function () {
                         modal.style.display = "none";
                     }
                     window.onclick = function (event) {
@@ -200,15 +178,34 @@
                             modal.style.display = "none";
                         }
                     }
+        $("#submit").on("click", function (event) {
+            event.preventDefault();
+            console.log("submitting")
+            
+            let score = []
+            for (let i = 1; i < 11; i++) {
+                score.push(parseInt($(`#quest${i}`).val()));
+            }
+            if (score.length === 10 && $("#name").val().trim() && $("#photo-image").val().trim()) {
+                let newFriend = {
+                    name: $("#name").val().trim(),
+                    photo: $("#photo-image").val().trim(),                    
+                    scores: score,
+                };
+                console.log('im here');
+                
+
+                $.post("/api/friends", newFriend, function (data) {
+                    console.log(data)
+                    console.log(data.photo)
+                    modal.style.display = "block";
+                    $("#bestie").text(data.name);
+                    $("#image").attr("src", data.photo)
+                    
                 });
             }
+           
         });
-
-
-
-
-
-
     </script>
 
 </body>
